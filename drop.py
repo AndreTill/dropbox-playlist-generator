@@ -2,13 +2,24 @@ import dropbox
 
 import os
 
-# Set up Dropbox API connection
+import argparse
 
-dbx = dropbox.Dropbox('sl.B155EYP96BMYGQivuH_pX3w3TkB-fJfarPImJPL-YCEuYDQLpOnxM_Ww7zuArSfoxLm3HDdqhQ6pVVT9QFJt-X4CZbz5yzHinK4X_qYSkP4CzOBheV-VlL9X80CfgvU3bxHsivrcFzk5Gg94AeDi')
+import string
+
+
+parser = argparse.ArgumentParser(description='Process some keys.')
+parser.add_argument('--token', type=str)
+parser.add_argument('--dir', type=str)
+
+
+# Set up Dropbox API connection
+args = parser.parse_args()
+
+dbx = dropbox.Dropbox(str(args.token))
 
 # Set the path to the Dropbox folder containing the video files
 
-folder_path = '/vids'
+folder_path = args.dir
 
 # Get a list of all files in the folder
 
